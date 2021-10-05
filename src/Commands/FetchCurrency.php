@@ -1,10 +1,10 @@
 <?php
 
-namespace Unbank\CryptoScraper\Commands;
+namespace Unbank\CurrencyScraper\Commands;
 
 use Illuminate\Console\Command;
-use Unbank\CryptoScraper\BitstampScraper;
-use Unbank\CryptoScraper\CurrencyExchange;
+use Unbank\CurrencyScraper\BitstampScraper;
+use Unbank\CurrencyScraper\CurrencyExchange;
 
 class FetchCurrency extends Command
 {

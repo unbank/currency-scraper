@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Unbank\CryptoScraper;
+namespace Unbank\CurrencyScraper;
 
 
 class BitstampScraper {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Unbank\CryptoScraper\Http\Controllers;
+namespace Unbank\CurrencyScraper\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Unbank\CryptoScraper\BitstampScraper;
-use Unbank\CryptoScraper\CurrencyExchange;
+use Unbank\CurrencyScraper\BitstampScraper;
+use Unbank\CurrencyScraper\CurrencyExchange;
 
 class CurrencyController {
 

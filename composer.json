@@ -1,5 +1,5 @@
 {
-    "name": "unbank/crypto-scraper",
+    "name": "unbank/currency-scraper",
     "description": "Fetch crypto currency exchange rate",
     "type": "package",
     "license": "MIT",
@@ -13,16 +13,17 @@
         }
     ],
     "require": {
-        "illuminate/support": "^7.0|^8.0"
+        "illuminate/support": "^7.0|^8.0",
+        "osoobe/laravel-utilities": "*"
     },
     "autoload": {
         "psr-4": {
-            "Unbank\\CryptoScraper\\": "./src"
+            "Unbank\\CurrencyScraper\\": "./src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Unbank\\CryptoScraper\\Tests\\": "tests"
+            "Unbank\\CurrencyScraper\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -31,7 +32,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Unbank\\CryptoScraper\\CurrencyScraperServiceProvider"
+                "Unbank\\CurrencyScraper\\CurrencyScraperServiceProvider"
             ]
         }
     },

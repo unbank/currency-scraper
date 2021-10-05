@@ -1,6 +1,6 @@
 <?php
 
-namespace Unbank\CryptoScraper;
+namespace Unbank\CurrencyScraper;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -29,7 +29,7 @@ class CurrencyScraperServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \Unbank\CryptoScraper\Commands\FetchCurrency::class
+                \Unbank\CurrencyScraper\Commands\FetchCurrency::class
             ]);
         }
 
