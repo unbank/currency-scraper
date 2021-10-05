@@ -13,7 +13,7 @@ class FetchCurrency extends Command
      *
      * @var string
      */
-    protected $signature = 'cryto:scraper';
+    protected $signature = 'currency:scraper';
 
     /**
      * The console command description.
