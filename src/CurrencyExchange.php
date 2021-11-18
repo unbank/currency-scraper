@@ -19,7 +19,9 @@ class CurrencyExchange extends Model {
         'volume',
         'source_data',
         'source',
-        'currency_type'
+        'currency_type',
+        'transaction_type',
+        'markup'
     ];
 
     protected $casts = [

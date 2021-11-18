@@ -32,15 +32,42 @@ class FetchCurrency extends Command
         parent::__construct();
     }
 
-    private function update_exchange($exchange, $data, $source='bitstamp', $currency_type='crypto') {
+    private function update_exchange($crypto, $fcurrency, $data, $source='bitstamp', $currency_type='crypto') {
+
+        // Sell Cryto
+        // dd($data['last']);
+        echo PHP_EOL, "Sell rate for $crypto -> $fcurrency: ".$data['last'];
         $cex = CurrencyExchange::updateOrCreate(
-            $exchange,
+            ['from' => $crypto, 'to' => $fcurrency],
             [
                 "rate" => $data['last'],
                 "volume" => $data['volume'],
                 "source" => $source,
                 "source_data" => $data,
-                "currency_type" => "crypto",
+                "currency_type" => "crypto2currnecy",
+                "transaction_type" => "sell",
+                // "markup" => null
+            ]
+        );
+
+        $markup = 1;
+
+        // Buy Crypto
+        $rate = $data['last'] + ( $data['last'] * $markup  );
+        $rate = $data['last'];
+        $rate = 1 / $rate;
+        echo PHP_EOL, "Buy rate for $fcurrency -> $crypto: ".$rate;
+        // dd($rate);
+        $cex = CurrencyExchange::updateOrCreate(
+            ['from' => $fcurrency, 'to' => $crypto],
+            [
+                "rate" => $rate,
+                "volume" => $data['volume'],
+                "source" => $source,
+                "source_data" => $data,
+                "currency_type" => "currnecy2crypto",
+                "transaction_type" => "buy",
+                "markup" => $markup
             ]
         );
     }
@@ -56,13 +83,14 @@ class FetchCurrency extends Command
         $ltc_data = BitstampScraper::ltc2usd();
         echo "BTC to USD: ", PHP_EOL, json_encode($btc_data, true);
         $this->update_exchange(
-            ['from' => "BTC", 'to' => 'USD'],
+            "BTC", "USD",
             $btc_data
         );
 
+
         echo PHP_EOL, PHP_EOL, "LTC to USD: ", PHP_EOL, json_encode($ltc_data, true);
         $this->update_exchange(
-            ['from' => "LTC", 'to' => 'USD'],
+            "LTC", "USD",
             $btc_data
         );
 

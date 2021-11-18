@@ -32,7 +32,7 @@ class CurrencyController {
                 ]);
             }
 
-            $from_value = $request->input('exchange', 1);
+            $from_value = (float) $request->input('exchange', 1);
             $cex = CurrencyExchange::exchange(strtoupper($from), strtoupper($to))
                 ->first();
 
