@@ -5,9 +5,12 @@ namespace Unbank\CurrencyScraper\Commands;
 use Illuminate\Console\Command;
 use Unbank\CurrencyScraper\BitstampScraper;
 use Unbank\CurrencyScraper\CurrencyExchange;
+use Unbank\CurrencyScraper\Traits\ExchangePullTrait;
 
 class FetchCurrency extends Command
 {
+    use ExchangePullTrait;
+
     /**
      * The name and signature of the console command.
      *
@@ -30,46 +33,6 @@ class FetchCurrency extends Command
     public function __construct()
     {
         parent::__construct();
-    }
-
-    private function update_exchange($crypto, $fcurrency, $data, $source='bitstamp', $currency_type='crypto') {
-
-        // Sell Cryto
-        // dd($data['last']);
-        echo PHP_EOL, "Sell rate for $crypto -> $fcurrency: ".$data['last'];
-        $cex = CurrencyExchange::updateOrCreate(
-            ['from' => $crypto, 'to' => $fcurrency],
-            [
-                "rate" => $data['last'],
-                "volume" => $data['volume'],
-                "source" => $source,
-                "source_data" => $data,
-                "currency_type" => "crypto2currnecy",
-                "transaction_type" => "sell",
-                // "markup" => null
-            ]
-        );
-
-        $markup = 1;
-
-        // Buy Crypto
-        $rate = $data['last'] + ( $data['last'] * $markup  );
-        $rate = $data['last'];
-        $rate = 1 / $rate;
-        echo PHP_EOL, "Buy rate for $fcurrency -> $crypto: ".$rate;
-        // dd($rate);
-        $cex = CurrencyExchange::updateOrCreate(
-            ['from' => $fcurrency, 'to' => $crypto],
-            [
-                "rate" => $rate,
-                "volume" => $data['volume'],
-                "source" => $source,
-                "source_data" => $data,
-                "currency_type" => "currnecy2crypto",
-                "transaction_type" => "buy",
-                "markup" => $markup
-            ]
-        );
     }
 
     /**
