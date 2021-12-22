@@ -32,8 +32,8 @@ class CurrencyExchange extends Model {
 
 
     public function scopeExchange($query, $from, $to) {
-        return $query->where('from', $from)
-            ->where('to', $to);
+        return $query->where('from', strtoupper($from))
+            ->where('to', strtoupper($to));
     }
 
     public function scopeSource($query, $source) {
