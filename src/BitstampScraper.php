@@ -38,7 +38,7 @@ class BitstampScraper {
     public static function ltc2usd() {
         return static::ticker("ltcusd");
     }
-    
+
     public static function eth2usd() {
         return static::ticker("ethusd");
     }
@@ -49,6 +49,10 @@ class BitstampScraper {
 
     public static function doge2usd() {
         return static::ticker("dogeusd");
+    }
+
+    public static function sol2usd() {
+        return static::ticker("solusd");
     }
 }
 
